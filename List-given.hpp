@@ -126,12 +126,20 @@ void List<T>::sort() {
 template <class T>
 void List<T>::print(ostream& os) const {
     os << "<";
+    std::cout << "given print: line " << __LINE__ << std::endl;
     ListNode* curr = head_;
+    std::cout << "given print: line " << __LINE__ << std::endl;
     while (curr != NULL) {
+        std::cout << "given print: line " << __LINE__ << std::endl;
+        std::cout << "given curr next: " << (&curr->data) << std::endl;
         os << " " << curr->data;
+        std::cout << "given print: line " << __LINE__ << std::endl;
         curr = curr->next;
+        std::cout << "given print: line " << __LINE__ << std::endl;
     }
+    std::cout << "given print: line " << __LINE__ << std::endl;
     os << " >";
+    std::cout << "given print: line " << __LINE__ << std::endl;
 }
 
 // overloaded operator<<

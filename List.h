@@ -155,11 +155,11 @@ class List {
     /**
      * Modifies List using the rules for a TripleRotate.
      *
-     * This function will to a wrapped rotation to the left on every three 
-     * elements in the list starting for the first three elements. If the 
-     * end of the list has a set of 1 or 2 elements, no rotation all be done 
+     * This function will to a wrapped rotation to the left on every three
+     * elements in the list starting for the first three elements. If the
+     * end of the list has a set of 1 or 2 elements, no rotation all be done
      * on the last 1 or 2 elements.
-     * 
+     *
      * You may NOT allocate ANY new ListNodes!
      */
     void tripleRotate();
@@ -233,6 +233,9 @@ class List {
      * You must use these as specified in the spec and may not rename them.
      * You may place more here as you need them.
      */
+
+     ListNode* getHead();
+     ListNode* getTail();
 
     /**
      * Copies the given list into the current list.

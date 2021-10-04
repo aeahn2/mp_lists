@@ -3,6 +3,10 @@
  * Doubly Linked List (MP 3).
  */
  #include <iostream>
+ #include <unordered_set>
+ #include <stack>
+ #include <string>
+#include <typeinfo>
 
 template <class T>
 List<T>::List() {
@@ -19,7 +23,6 @@ List<T>::List() {
 template <typename T>
 typename List<T>::ListIterator List<T>::begin() const {
   // @TODO: graded in MP3.1
-  //return List<T>::ListIterator(NULL);
   List<T>::ListIterator iter = head_;
   return iter;
 }
@@ -41,6 +44,43 @@ typename List<T>::ListIterator List<T>::end() const {
 template <typename T>
 void List<T>::_destroy() {
   /// @todo Graded in MP3.1
+  // std::cout << "destroy print: line " << __LINE__ << std::endl;
+  // while (head_ != NULL) {
+  //   std::cout << "destroy print: line " << __LINE__ << std::endl;
+  //   //bool isNull = (head_->next == NULL);
+  //   std::cout << "destroy print: head.next null? " << head_->next << std::endl;
+  //   tail_ = head_->next;
+  //   std::cout << "destroy print: line " << __LINE__ << std::endl;
+  //   delete head_;
+  //   std::cout << "destroy print: line " << __LINE__ << std::endl;
+  //   head_ = tail_;
+  //   std::cout << "destroy print: line " << __LINE__ << std::endl;
+  // }
+  // std::cout << "destroy print: line " << __LINE__ << std::endl;
+  std::cout << "destroy print: line " << __LINE__ << std::endl;
+  int len = this->length_;
+  std::cout << "destroy print: line " << __LINE__ << std::endl;
+  ListNode *curr = this->head_;
+  while (len > 1) {
+    std::cout << "destroy print: line " << __LINE__ << std::endl;
+    ListNode *next = curr->next;
+    std::cout << "destroy print: line " << __LINE__ << std::endl;
+    delete curr;
+    std::cout << "destroy print: line " << __LINE__ << std::endl;
+    curr = next;
+    std::cout << "destroy print: line " << __LINE__ << std::endl;
+    len--;
+    std::cout << "destroy print: line " << __LINE__ << std::endl;
+  }
+  std::cout << "destroy print: line " << __LINE__ << std::endl;
+  // curr = this->tail_;
+  // delete curr;
+  //delete head_;
+  //std::cout << "destroy print: line " << __LINE__ << std::endl;
+  //delete tail_;
+  //std::cout << "destroy print: line " << __LINE__ << std::endl;
+  this->length_ = 0;
+  std::cout << "destroy print: line " << __LINE__ << std::endl;
 }
 
 /**
@@ -52,26 +92,16 @@ void List<T>::_destroy() {
 template <typename T>
 void List<T>::insertFront(T const & ndata) {
   /// @todo Graded in MP3.1
-  std::cout << "line " << __LINE__ << std::endl;
   ListNode * newNode = new ListNode(ndata);
-  std::cout << "line " << __LINE__ << std::endl;
-  newNode -> next = head_;
-  std::cout << "line " << __LINE__ << std::endl;
-  newNode -> prev = NULL;
-  std::cout << "line " << __LINE__ << std::endl;
 
-  if (head_ != NULL) {
-    std::cout << "line " << __LINE__ << std::endl;
-    head_ -> prev = newNode;
-    std::cout << "line " << __LINE__ << std::endl;
-    head_ = newNode;
-    std::cout << "line " << __LINE__ << std::endl;
+  if (this->head_ == NULL) {
+    this->head_ = newNode;
+    this->tail_ = newNode;
+  } else {
+    //&(this->head_)-> prev = newNode;
+    newNode->next = this->head_;
+    this->head_ = newNode;
   }
-  if (tail_ == NULL) {
-    std::cout << "line " << __LINE__ << std::endl;
-    tail_ = newNode;
-  }
-  std::cout << "line " << __LINE__ << std::endl;
   length_++;
 }
 
@@ -84,6 +114,28 @@ void List<T>::insertFront(T const & ndata) {
 template <typename T>
 void List<T>::insertBack(const T & ndata) {
   /// @todo Graded in MP3.1
+  std::cout << "insertBack print: line " << __LINE__ << std::endl;
+  if (this->tail_ == NULL) {
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+    this->tail_ = new ListNode(ndata);
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+    this->head_ = this->tail_;
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+  } else {
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+    ListNode* back = new ListNode(ndata);
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+    ListNode **tailNode = &tail_;
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+    std::cout << "insertBack: (*tailNode)->next " << (((*tailNode)->next)==NULL) << std::endl;
+    std::cout << "insertBack: back " << back << std::endl;
+    (*tailNode)->next = back;
+    //this->tail_->next = back;
+    std::cout << "insertBack print: line " << __LINE__ << std::endl;
+  }
+  std::cout << "insertBack print: line " << __LINE__ << std::endl;
+  length_++;
+  std::cout << "insertBack print: line " << __LINE__ << std::endl;
 }
 
 /**
@@ -227,4 +279,14 @@ template <typename T>
 typename List<T>::ListNode* List<T>::mergesort(ListNode * start, int chainLength) {
   /// @todo Graded in MP3.2
   return NULL;
+}
+
+template <class T>
+typename List<T>::ListNode* List<T>::getHead() {
+  return this->head_;
+}
+
+template <class T>
+typename List<T>::ListNode* List<T>::getTail() {
+  return this->tail_;
 }

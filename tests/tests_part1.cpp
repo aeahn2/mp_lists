@@ -18,35 +18,51 @@ using namespace cs225;
 // Non-iterator Tests:
 //
 TEST_CASE("List::insertFront size", "[weight=1][part=1][valgrind]") {
-    std::cout << "line " << __LINE__ << std::endl;
+    std::cout << "test1: line " << __LINE__ << std::endl;
     List<int> list;
-    std::cout << "line " << __LINE__ << std::endl;
+    std::cout << "test1: line " << __LINE__ << std::endl;
     for (unsigned i = 0; i < 10; i++) { list.insertFront(i); }
-    std::cout << "line " << __LINE__ << std::endl;
+    std::cout << "test1: line " << __LINE__ << std::endl;
+    std::cout << "test1: end = " << ( 10 == list.size() ) << std::endl;
     REQUIRE( 10 == list.size() );
 }
 
 TEST_CASE("List::insertBack size", "[weight=2][part=1][valgrind]") {
+    std::cout << "test2: line " << __LINE__ << std::endl;
     List<int> list;
-
+    std::cout << "test2: line " << __LINE__ << std::endl;
     for (unsigned i = 0; i < 10; i++) { list.insertBack(i); }
-
+    std::cout << "test2: line " << __LINE__ << std::endl;
+    std::cout << "test2: end " << ( 10 == list.size() ) << std::endl;
     REQUIRE( 10 == list.size() );
 }
 
 TEST_CASE("List::insert contents", "[weight=4][part=1][valgrind]") {
     List<int> list;
-
+    std::cout << "test3: inital list " << list.size() << std::endl;
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertBack(3);
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertBack(2);
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertBack(1);
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertFront(3);
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertFront(2);
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.insertFront(1);
-
+    std::cout << "test3: line " << __LINE__ << std::endl;
+    std::cout << "test3: filled list " << list.size() << std::endl;
     stringstream s;
+    std::cout << "test3: line " << __LINE__ << std::endl;
+    std::cout << s.str() << std::endl;
+    std::cout << "test3: line " << __LINE__ << std::endl;
     list.print(s);
-
+    std::cout << "test3: line " << __LINE__ << std::endl;
+    std::cout << s.str() << std::endl;
+    std::cout << "test3: line " << __LINE__ << std::endl;
+    std::cout << "test3: end " << ( "< 1 2 3 3 2 1 >" == s.str() ) << std::endl;
     REQUIRE( "< 1 2 3 3 2 1 >" == s.str() );
 }
 
